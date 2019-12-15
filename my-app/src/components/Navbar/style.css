@@ -1,7 +1,7 @@
 .navbar {
     background: rgb(3, 3, 119);
     color: #fff;
-    height: 60px;
+    height: 70px;
     position: fixed;
     width: 100%;
     box-shadow: 0 10px 20px grey;
@@ -9,7 +9,10 @@
     font-weight: bold;
 }
 
+
 li {
-    padding-left: 5%;
-    padding-right: 5%;
+    list-style: none;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-shadow: black 0 5px 5px;
 }

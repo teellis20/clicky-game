@@ -6,23 +6,59 @@ import Navbar from './components/Navbar';
 
 let score = 0;
 let topScore = 0;
+let correctly = "Click an image to begin!"
 class App extends Component {
   state = {
     cast,
     score,
-    topScore
+    topScore,
+    correctly
   };
 
+  // shuffle the photos on click
+  
+
+  resetScore = () => this.setState({ score: 0 });
+
+  resetClicked = (item) => item.lastClicked = false;
+
   updateScore = () => {
-    this.setState({ score: this.state.count + 1});
+    this.setState({ score: this.state.score + 1});
+    // this.updateTopScore();
+  }
+
+  updateTopScore = () => {
+    if(this.state.score >= this.state.topScore) {
+      this.setState({ topScore: this.state.score })
+    } else {
+      this.setState({ topScore: this.state.topScore })
+    }
+  }
+
+  checkIfClicked = result => {
+    if(result.lastClicked) {
+      this.resetScore();
+      this.setState({ correctly: "You guessed incorrectly!"}
+      );
+      this.state.cast.map(this.resetClicked);
+      this.setState({ cast });
+    } else {
+      this.updateScore();
+      this.updateTopScore();
+      this.setState({ correctly: "You guessed correctly!"})
+    };
   }
 
   markLast = result => {
     console.log(result.lastClicked);
     cast.lastClicked = true;
-      
-      console.log(cast);
-      // this.setState({ cast });
+      for (let i = 0; i < cast.length; i++) {
+        if (result.id === cast[i].id) {
+          cast[i].lastClicked = true;
+          console.log(cast[i].lastClicked);
+        }
+      }
+      this.setState({ cast });
 };
 
 render() {
@@ -32,11 +68,13 @@ render() {
       <Navbar 
       score={this.state.score}
       topScore={this.state.topScore}
+      correctly={this.state.correctly}
       />
 
       <Wrapper>
       {this.state.cast.map(cast => (
         <CastCard 
+        checkIfClicked={this.checkIfClicked}
         markLast={this.markLast}
         id={cast.id}
         key={cast.id}
