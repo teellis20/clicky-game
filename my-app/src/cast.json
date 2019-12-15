@@ -34,12 +34,7 @@
         "name": "Ryan",
         "photo": "https://upload.wikimedia.org/wikipedia/en/9/91/Ryan_Howard_%28The_Office%29.jpg",
         "lastClicked": false
-    }, {
-        "id": 7,
-        "name": "Andy",
-        "photo": "https://upload.wikimedia.org/wikipedia/en/8/84/Andy_Bernard_photoshot.jpg",
-        "lastClicked": false
-    }, 
+    },
     {
         "id": 8,
         "name": "Stanley",

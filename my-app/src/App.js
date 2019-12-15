@@ -3,19 +3,23 @@ import CastCard from "./components/CastCard";
 import Wrapper from "./components/Wrapper";
 import cast from "./cast.json";
 
-
+let score = 0;
 class App extends Component {
   state = {
-    cast
+    cast,
+    score
   };
+
+  updateScore = () => {
+    this.setState({ score: this.state.count + 1});
+  }
 
   markLast = result => {
     console.log(result.lastClicked);
-    console.log(this.cast.lastClicked);
     cast.lastClicked = true;
       
-      console.log(cast.lastClicked);
-      this.setState({ cast });
+      console.log(cast);
+      // this.setState({ cast });
 };
 
 render() {
