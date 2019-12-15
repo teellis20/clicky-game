@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import CastCard from "./components/CastCard";
 import Wrapper from "./components/Wrapper";
 import cast from "./cast.json";
+import Navbar from './components/Navbar';
 
 let score = 0;
+let topScore = 0;
 class App extends Component {
   state = {
     cast,
-    score
+    score,
+    topScore
   };
 
   updateScore = () => {
@@ -26,8 +29,12 @@ render() {
 
   return (
     <div>
-      <Wrapper>
+      <Navbar 
+      score={this.state.score}
+      topScore={this.state.topScore}
+      />
 
+      <Wrapper>
       {this.state.cast.map(cast => (
         <CastCard 
         markLast={this.markLast}
