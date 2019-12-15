@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import CastCard from "./components/CastCard";
+import Wrapper from "./components/Wrapper";
+import cast from "./cast.json";
 
-function App() {
+
+class App extends Component {
+  state = {
+    cast
+  };
+
+  markLast = result => {
+    console.log(result.lastClicked);
+    console.log(this.cast.lastClicked);
+    cast.lastClicked = true;
+      
+      console.log(cast.lastClicked);
+      this.setState({ cast });
+};
+
+render() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Wrapper>
+
+      {this.state.cast.map(cast => (
+        <CastCard 
+        markLast={this.markLast}
+        id={cast.id}
+        key={cast.id}
+        name={cast.name}
+        lastClicked={cast.lastClicked}
+        photo={cast.photo}  
+        />
+        ))}
+        </Wrapper>
     </div>
   );
+}
 }
 
 export default App;
