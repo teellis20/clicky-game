@@ -9,7 +9,9 @@
     font-weight: bold;
 }
 
-
+a {
+    color: white;
+}
 li {
     list-style: none;
     margin-left: 5%;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { BrowserRouter as Router, Route } from "react-router-dom";
 import CastCard from "./components/CastCard";
 import Wrapper from "./components/Wrapper";
 import cast from "./cast.json";
@@ -16,24 +17,31 @@ class App extends Component {
   };
 
   // shuffle the photos on click
-  
+  shuffleArray = (array) => {
+    let i = array.length - 1;
+    for (; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
 
   resetScore = () => this.setState({ score: 0 });
 
   resetClicked = (item) => item.lastClicked = false;
 
   updateScore = () => {
-    this.setState({ score: this.state.score + 1});
-    // this.updateTopScore();
-  }
-
-  updateTopScore = () => {
     if(this.state.score >= this.state.topScore) {
-      this.setState({ topScore: this.state.score })
+      this.setState({ score: this.state.score + 1});
+      this.setState({ topScore: this.state.score + 1 })
     } else {
+      this.setState({ score: this.state.score + 1});
       this.setState({ topScore: this.state.topScore })
     }
   }
+
 
   checkIfClicked = result => {
     if(result.lastClicked) {
@@ -44,7 +52,6 @@ class App extends Component {
       this.setState({ cast });
     } else {
       this.updateScore();
-      this.updateTopScore();
       this.setState({ correctly: "You guessed correctly!"})
     };
   }
@@ -62,17 +69,18 @@ class App extends Component {
 };
 
 render() {
-
+  const shuffledCast = this.shuffleArray(this.state.cast)
   return (
     <div>
-      <Navbar 
+      <Navbar
       score={this.state.score}
       topScore={this.state.topScore}
       correctly={this.state.correctly}
       />
+      
 
       <Wrapper>
-      {this.state.cast.map(cast => (
+      {shuffledCast.map(cast => (
         <CastCard 
         checkIfClicked={this.checkIfClicked}
         markLast={this.markLast}
