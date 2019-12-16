@@ -1,6 +1,6 @@
 {
   "name": "my-app",
-  "homepage": "https://teellis20.github.io/clicky-game/",
+  "homepage": "https://teellis20.github.io/clicky-game",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
